@@ -23,7 +23,7 @@ def test_send_keys():
 	assert driver.current_url == URL
 
 	# Donate button
-	byXpath = driver.find_element(By.XPATH, '//*[@id="touchnav-wrapper"]/header/div/div[1]/a')
+	byXpath = driver.find_element(By.XPATH, '//*[@class="donate-button"]')
 	byXpath.click()
 	assert driver.current_url == donateURL
 
