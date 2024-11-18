@@ -10,12 +10,14 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 
 options = Options()
-options.add_argument("--headless=new")
+# options.add_argument("--headless=new")
 
 driver = webdriver.Chrome(options=options)
 
 URL = "https://www.python.org/";
 q = "python"
+# f = open("data.txt").read()
+# q = f
 
 def test_send_keys():
 	driver.get(URL)

@@ -1,0 +1,4 @@
+Action,Identifier,InputValue
+EnterText,Username,daryl
+EnterText,Password,Pa$$word123
+Click,Submit
