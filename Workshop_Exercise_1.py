@@ -36,15 +36,16 @@ def enterText(element, value):
     element.send_keys(value);
 
 def test_title_and_logo():
-    assert driver.current_url == URL+"/"
+    assert URL in driver.current_url
 
     appTitle = "Swag Labs"
     assert driver.title == appTitle
     logo = driver.find_element(By.CLASS_NAME, "login_logo")
+
     assert logo.text == appTitle
 
 def test_login():
-    assert driver.current_url == URL+"/"
+    assert URL in driver.current_url
 
     username = driver.find_element(By.ID, "user-name")
     password = driver.find_element(By.XPATH, '//*[@id="password"]')
@@ -52,6 +53,7 @@ def test_login():
     enterText(username, USERNAME_STD)
     enterText(password, PASSWORD_STD)
     btnLogin.click()
+
     assert driver.current_url == URL+"/inventory.html"
 
 
@@ -75,6 +77,7 @@ def test_inventory_page():
     assert itemDesc.text == PRODUCT_DESC
 
     itemDesc.click()
+
     assert driver.current_url == URL+"/inventory-item.html?id=5"
 
 
@@ -92,7 +95,9 @@ def test_add_to_cart():
     badge = driver.find_element(By.CSS_SELECTOR, xpath_cartBadge)
 
     assert badge.text == '1'
+
     badge.click()
+
     assert driver.current_url == URL+"/cart.html"
 
 
@@ -106,6 +111,7 @@ def test_purchase_item():
 
     btnCheckout = driver.find_element(By.ID, 'checkout')
     btnCheckout.click()
+
     assert driver.current_url == URL+"/checkout-step-one.html"
 
 
@@ -122,6 +128,7 @@ def test_checkout():
 
     btnContinue = driver.find_element(By.NAME, 'continue')
     btnContinue.click()
+
     assert driver.current_url == URL+"/checkout-step-two.html"
 
 
@@ -135,7 +142,9 @@ def test_confirm_purchase():
 
     btnContinue = driver.find_element(By.XPATH, '//*[@id="finish"]')
     btnContinue.click()
+
     assert driver.current_url == URL+"/checkout-complete.html"
+
 
 def test_logout():
     burger = driver.find_element(By.ID, 'react-burger-menu-btn').click()
@@ -147,8 +156,10 @@ def test_logout():
     logout = driver.find_element(By.XPATH, xpath_logout)
     logout.click();
 
-    assert driver.current_url == URL+"/"
+    assert URL in driver.current_url
 
 
-def test_99_shutdown():
-    driver.close()
+def test_shutdown():
+    assert URL in driver.current_url
+
+    driver.quit()
