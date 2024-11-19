@@ -10,7 +10,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 
 options = Options()
-# options.add_argument("--headless=new")
+options.add_argument("--headless=new")
 
 driver = webdriver.Chrome(options=options)
 
