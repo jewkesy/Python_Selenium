@@ -24,7 +24,7 @@ def test_can_use_css_selector():
 	assert driver.current_url == URL
 
 	searchBox = driver.find_element(By.CSS_SELECTOR, "#id-search-field").send_keys(q)
-	submitBtn = driver.find_element(By.CSS_SELECTOR, "#submit").click()
+	submitBtn = driver.find_element(By.CSS_SELECTOR, "button#submit.search-button").click()
 
 	assert driver.current_url == URL + "search/?q=" + q + "&submit="
 
