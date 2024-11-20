@@ -37,16 +37,15 @@ def enterText(element, value):
 def test_friendly_login():
     assert URL in driver.current_url
 
-    username = driver.find_element(By.ID, "user-name")
     password = driver.find_element(By.XPATH, '//*[@id="password"]')
 
     friendlyUsername = driver.find_element(locate_with(By.TAG_NAME, "input").above(password))
-    friendlyPassword = driver.find_element(locate_with(By.TAG_NAME, "input").below(username))
+    friendlyPassword = driver.find_element(locate_with(By.TAG_NAME, "input").below(friendlyUsername))
 
     enterText(friendlyUsername, USERNAME_STD)
     enterText(friendlyPassword, PASSWORD_STD)
 
-    friendlyLogin = driver.find_element(locate_with(By.ID, "login-button").near(friendlyPassword, 100))
+    friendlyLogin = driver.find_element(locate_with(By.ID, "login-button").near(friendlyPassword, 60))
     friendlyLogin.click()
 
     assert driver.current_url == URL+"/inventory.html"
