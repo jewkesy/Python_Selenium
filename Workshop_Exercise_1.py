@@ -49,9 +49,13 @@ def test_login():
 
     username = driver.find_element(By.ID, "user-name")
     password = driver.find_element(By.XPATH, '//*[@id="password"]')
-    btnLogin = driver.find_element(By.NAME, "login-button")
+
+    assert password.get_attribute('type') == 'password'
+
     enterText(username, USERNAME_STD)
     enterText(password, PASSWORD_STD)
+
+    btnLogin = driver.find_element(By.NAME, "login-button")
     btnLogin.click()
 
     assert driver.current_url == URL+"/inventory.html"
@@ -147,6 +151,8 @@ def test_confirm_purchase():
 
 
 def test_logout():
+    assert URL in driver.current_url
+
     burger = driver.find_element(By.ID, 'react-burger-menu-btn').click()
 
     xpath_logout = '//*[@id="logout_sidebar_link"]'
