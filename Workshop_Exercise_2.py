@@ -46,7 +46,7 @@ def test_friendly_login():
     enterText(friendlyUsername, USERNAME_STD)
     enterText(friendlyPassword, PASSWORD_STD)
 
-    friendlyLogin = driver.find_element(locate_with(By.TAG_NAME, "input").below(friendlyPassword))
+    friendlyLogin = driver.find_element(locate_with(By.ID, "login-button").near(friendlyPassword, 100))
     friendlyLogin.click()
 
     assert driver.current_url == URL+"/inventory.html"
