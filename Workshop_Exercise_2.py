@@ -22,10 +22,9 @@ URL = "https://www.saucedemo.com"
 
 USERNAME_STD = "standard_user"
 PASSWORD_STD = "secret_sauce"
-PRODUCT_DESC = "Sauce Labs Fleece Jacket"
 
 options = Options()
-options.add_argument("--headless=new")
+# options.add_argument("--headless=new")
 
 driver = webdriver.Chrome(options=options)
 driver.get(URL) 
@@ -47,11 +46,10 @@ def test_friendly_login():
     enterText(friendlyUsername, USERNAME_STD)
     enterText(friendlyPassword, PASSWORD_STD)
 
-    btnLogin = driver.find_element(By.NAME, "login-button")
-    btnLogin.click()
+    friendlyLogin = driver.find_element(locate_with(By.TAG_NAME, "input").below(friendlyPassword))
+    friendlyLogin.click()
 
     assert driver.current_url == URL+"/inventory.html"
-
 
 
 def test_shutdown():
